@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Text Example</title>
+    <title>Homepage</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function handleClick(){
+            const button = document.querySelector('.text-button');
+            const text = document.querySelector('.centered-text');
+
+            button.style.display = 'none';
+            text.classList.add('slide-away');
+
+            setTimeout(() => {
+                window.location.href = 'index2.html';
+
+            }, 1000);
+        }
+    </script>
 </head>
 <body>
     <div class="centered-text">
         FIGHT GENIE
     </div>
     <div class="container">
-        <button class="text-button">CLICK TO START</button>
+        <a >
+        <button class="text-button" onclick="handleClick()">CLICK TO START</button>
+        </a>
     </div>
 </body>
 </html>
