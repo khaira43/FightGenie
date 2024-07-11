@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown VS Example</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <div class="container">
+        <select class="dropdown" id="fighter1"></select>
+        <div class="VS">VS</div>
+        <select class="dropdown" id="fighter2"></select>
+    </div>
+
+    <script>
+        function populateDropdown() {
+            const dropdown1 = document.getElementById('fighter1');
+            const dropdown2 = document.getElementById('fighter2');
+
+            fighters.forEach(fighter => {
+                const option1 = document.createElement('option');
+                const option2 = document.createElement('option');
+                option1.value = option2.value = fighter.name;
+                option1.textContent = option2.textContent = fighter.name;
+                dropdown1.appendChild(option1);
+                dropdown2.appendChild(option2);
+            });
+
+        } 
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener('readystatechange', function () {
+            if (this.readyState === this.DONE) {
+                try {
+                    const response = JSON.parse(this.responseText);
+                    console.log(response); // Log the entire response to the console
+                    populateDropdown(response); // Assuming the response is an array of fighters
+                } catch (error) {
+                    console.error('Error parsing JSON:', error);
+                }
+            }
+        });
+        xhr.open('GET', 'https://ufc-roster-api.p.rapidapi.com/');
+        xhr.setRequestHeader('x-rapidapi-key', '55bced44f2mshb3f4dc62065879dp1cd1c4jsn4ce79f1a1e8c');
+        xhr.setRequestHeader('x-rapidapi-host', 'ufc-roster-api.p.rapidapi.com');
+
+        xhr.send(null);
+
+        
+    </script>
+</body>
+</html>
